@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePegawai extends Migration
+class CreateRefUnit extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreatePegawai extends Migration
      */
     public function up()
     {
-        Schema::create('pegawai', function (Blueprint $table) {
+        Schema::create('ref_unit', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama', 50);
-            $table->string('kode_pegawai', 8)->unique();
-            $table->string('id_unit', 8);
-            $table->text('alamat');
-            // $table->string('id_jabatan', 8);
-            // $table->string('id_user', 8);
+            // $table->string('id_unit_parent', 8);
+            $table->integer('id_unit_parent')->unsigned()->nullable();
+            $table->foreign('id_unit_parent')->references('id')->on('ref_unit')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('level', 20);
             $table->boolean('is_active');
             $table->timestamp('inserted_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->string('inserted_by', 8);
@@ -36,6 +35,6 @@ class CreatePegawai extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pegawais');
+        Schema::dropIfExists('ref_unit');
     }
 }
