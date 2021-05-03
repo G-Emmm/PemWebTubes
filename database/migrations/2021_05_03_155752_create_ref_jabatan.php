@@ -14,10 +14,9 @@ class CreateRefJabatan extends Migration
     public function up()
     {
         Schema::create('ref_jabatan', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
             $table->string('nama', 50);
-            $table->string('keterangan', 50);
+            $table->text('keterangan');
             $table->boolean('is_active');
             $table->timestamp('inserted_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->string('inserted_by', 8);

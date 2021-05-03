@@ -13,16 +13,15 @@ class CreateSkpRealisasi extends Migration
      */
     public function up()
     {
-        Schema::create('skp_realisasis', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('id_skp_target', 8);
+        Schema::create('skp_realisasi', function (Blueprint $table) {
+            $table->increments('id');
+            // $table->string('id_skp_target', 8);
             $table->date('tanggal_awal', 8);
             $table->date('tanggal_akhir', 8);
-            $table->string('lokasi');
+            $table->text('lokasi');
             $table->integer('jml_realisasi');
-            $table->string('keterangan', 50);
-            $table->string('path_bukti', 50);
+            $table->text('keterangan');
+            $table->string('path_bukti', 255);
             $table->timestamp('inserted_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->string('inserted_by', 8);
             $table->timestamp('edited_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

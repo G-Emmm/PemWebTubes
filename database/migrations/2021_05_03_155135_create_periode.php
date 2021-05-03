@@ -14,8 +14,7 @@ class CreatePeriode extends Migration
     public function up()
     {
         Schema::create('periode', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
             $table->string('nama', 50);
             $table->date('tanggal_awal', 8);
             $table->date('tanggal_akhir', 8);

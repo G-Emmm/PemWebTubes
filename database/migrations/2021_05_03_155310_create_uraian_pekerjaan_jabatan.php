@@ -14,15 +14,15 @@ class CreateUraianPekerjaanJabatan extends Migration
     public function up()
     {
         Schema::create('uraian_pekerjaan_jabatan', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('id_jabatan', 8);
-            $table->string('id_uraian_pekerjaan', 8);
+            $table->increments('id');
+            // $table->string('id_jabatan', 8);
+            // $table->string('id_uraian_pekerjaan', 8);
             $table->timestamp('inserted_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->string('inserted_by', 8);
             $table->timestamp('edited_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->string('edited_by', 8);
             $table->boolean('is_active');
+            // Kurang composite key
         });
     }
 

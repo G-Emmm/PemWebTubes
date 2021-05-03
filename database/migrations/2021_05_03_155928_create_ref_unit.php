@@ -14,11 +14,10 @@ class CreateRefUnit extends Migration
     public function up()
     {
         Schema::create('ref_unit', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
             $table->string('nama', 50);
-            $table->string('id_unit_parent', 8);
-            $table->string('level', 8);
+            // $table->string('id_unit_parent', 8);
+            $table->string('level', 20);
             $table->boolean('is_active');
             $table->timestamp('inserted_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->string('inserted_by', 8);

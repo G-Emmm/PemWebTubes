@@ -13,15 +13,14 @@ class CreatePegawai extends Migration
      */
     public function up()
     {
-        Schema::create('pegawais', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('pegawai', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('nama', 50);
-            $table->string('kode_pegawai', 8);
+            $table->string('kode_pegawai', 8)->unique();
             $table->string('id_unit', 8);
             $table->text('alamat');
-            $table->string('id_jabatan', 8);
-            $table->string('id_user', 8);
+            // $table->string('id_jabatan', 8);
+            // $table->string('id_user', 8);
             $table->boolean('is_active');
             $table->timestamp('inserted_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->string('inserted_by', 8);
