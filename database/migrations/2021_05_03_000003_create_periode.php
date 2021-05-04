@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRefJabatan extends Migration
+class CreatePeriode extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateRefJabatan extends Migration
      */
     public function up()
     {
-        Schema::create('ref_jabatan', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('periode', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('nama', 50);
-            $table->string('keterangan', 50);
-            $table->boolean('is_active');
+            $table->date('tanggal_awal', 8);
+            $table->date('tanggal_akhir', 8);
             $table->timestamp('inserted_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->string('inserted_by', 8);
             $table->timestamp('edited_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
@@ -33,6 +32,6 @@ class CreateRefJabatan extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ref_jabatan');
+        Schema::dropIfExists('periode');
     }
 }

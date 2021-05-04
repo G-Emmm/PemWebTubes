@@ -14,13 +14,12 @@ class CreateUraianPekerjaan extends Migration
     public function up()
     {
         Schema::create('uraian_pekerjaan', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->increments('id');
             $table->text('uraian');
-            $table->string('keterangan', 50);
+            $table->text('keterangan');
             $table->integer('poin');
             $table->boolean('is_active');
-            $table->string('satuan');
+            $table->string('satuan', 20);
             $table->timestamp('inserted_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->string('inserted_by', 8);
             $table->timestamp('edited_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
