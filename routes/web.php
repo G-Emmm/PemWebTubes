@@ -1,9 +1,7 @@
 <?php
-  
+
 use Illuminate\Support\Facades\Route;
-  
-use App\Http\Controllers\HomeController;
-  
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +12,7 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('home/admin', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return view('welcome');
+});
