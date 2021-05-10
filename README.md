@@ -4,3 +4,4 @@ Kelompok 1
 2. Abrar Dwi Fairuz Nadhif (M0519003)
 3. Angga Exca Pradipta Syaifuddin (M0519015)
 4. Angga Judianto Mahendra (M0519016)
+5. Farhan Sungkar (M0518015)
