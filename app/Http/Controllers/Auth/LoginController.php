@@ -43,7 +43,7 @@ class LoginController extends Controller
         $this -> validate($request, ['email'=>'required|email', 'password' =>'required']);
 
         if(auth()->attempt(array('email'=>$input['email'], 'password'=>$input['password']))){
-            if(auth()->user()->is_admin == 1){
+            if(auth()->user()->is_admin){
                 return redirect()->route('admin.home');
             }else{
                 return redirect()->route('home');
