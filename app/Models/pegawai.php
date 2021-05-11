@@ -9,16 +9,23 @@ class pegawai extends Model
 {
     use HasFactory;
 
+    protected $table = 'pegawai';
+    const CREATED_AT = 'inserted_at';
+    const UPDATED_AT = 'edited_at';
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
+        'kode_pegawai',
         'nama',
         'alamat',
         'inserted_by',
         'edited_by',
+        'is_active',
     ];
 
     /**
@@ -27,7 +34,6 @@ class pegawai extends Model
      * @var array
      */
     protected $casts = [
-        'is_active' => 'boolean',
         'inserted_at' => 'timestamp',
         'edited_at' => 'timestamp',
     ];
