@@ -34,7 +34,7 @@ class pegawai extends Model
      * @var array
      */
     protected $casts = [
-        'inserted_at' => 'timestamp',
-        'edited_at' => 'timestamp',
+        'inserted_at' => 'datetime:Y-m-d\TH:i:s.u\Z',
+        'edited_at' => 'datetime:Y-m-d\TH:i:s.u\Z',
     ];
 }

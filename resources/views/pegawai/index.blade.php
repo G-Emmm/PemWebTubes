@@ -32,7 +32,7 @@
         </tr>
         @foreach ($pegawai as $key => $value)
         <tr>
-            <td>{{ ++$i }}</td>
+            <td>{{ $value->id }}</td>
             <td>{{ $value->nama }}</td>
             <td>{{ $value->alamat }}</td>
             <td>{{ $value->inserted_by }}</td>

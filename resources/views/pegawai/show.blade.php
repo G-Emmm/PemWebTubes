@@ -1,5 +1,5 @@
 @extends('pegawai.layout')
-  
+
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-   
+
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -36,33 +36,33 @@
                 <strong>Inserted by:</strong>
                 {{ $pegawai->inserted_by }}
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Inserted at:</strong>
-                    {{ $pegawai->inserted_at }}
-                </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Inserted at:</strong>
+                {{ $pegawai->inserted_at }}
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Edited by:</strong>
-                    {{ $pegawai->edited_by }}
-                </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Edited by:</strong>
+                {{ $pegawai->edited_by }}
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Edited at:</strong>
-                    {{ $pegawai->edited_at }}
-                </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Edited at:</strong>
+                {{ $pegawai->edited_at }}
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Status keaktifan:</strong>
-                    @if ($pegawai->is_active == 1)
-                        Aktif
-                    @else
-                        Nonaktif
-                    @endif
-                </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Status keaktifan:</strong>
+                @if ($pegawai->is_active == 1)
+                    Aktif
+                @else
+                    Nonaktif
+                @endif
             </div>
         </div>
     </div>
