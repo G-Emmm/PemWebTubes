@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\RefUnitController;
+use App\Http\Controllers\RefJabatanController;
 use App\Http\Controllers\UraianPekerjaanController;
 use App\Http\Controllers\UraianPekerjaanJabatanController;
 
