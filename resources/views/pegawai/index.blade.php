@@ -20,7 +20,7 @@
    
     <table class="table table-bordered">
         <tr>
-            <th>No</th>
+            <th>ID</th>
             <th>Nama</th>
             <th>Alamat</th>
             <th>Inserted by</th>

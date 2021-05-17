@@ -65,5 +65,23 @@
                 @endif
             </div>
         </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>ID unit:</strong>
+                {{ $pegawai->id_unit }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>ID jabatan:</strong>
+                {{ $pegawai->id_jabatan }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>ID user:</strong>
+                {{ $pegawai->id_user }}
+            </div>
+        </div>
     </div>
 @endsection
