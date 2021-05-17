@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class uraian_pekerjaan extends Model
 {
     use HasFactory;
+    
+    protected $table = 'uraian_pekerjaan';
+    const CREATED_AT = 'inserted_at';
+    const UPDATED_AT = 'edited_at';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +26,7 @@ class uraian_pekerjaan extends Model
         'satuan',
         'inserted_by',
         'edited_by',
+        'is_active',
     ];
 
     /**
@@ -30,7 +36,7 @@ class uraian_pekerjaan extends Model
      */
     protected $casts = [
         'is_active' => 'boolean',
-        'inserted_at' => 'timestamp',
-        'edited_at' => 'timestamp',
+        'inserted_at' => 'datetime:Y-m-d\TH:i:s.u\Z',
+        'edited_at' => 'datetime:Y-m-d\TH:i:s.u\Z',
     ];
 }
