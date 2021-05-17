@@ -7,6 +7,8 @@ use App\Http\Controllers\RefUnitController;
 use App\Http\Controllers\RefJabatanController;
 use App\Http\Controllers\UraianPekerjaanController;
 use App\Http\Controllers\UraianPekerjaanJabatanController;
+use App\Http\Controllers\SkpTargetController;
+use App\Http\Controllers\SkpRealisasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +34,5 @@ Route::resource('ref_unit', RefUnitController::class);
 Route::resource('ref_jabatan', RefJabatanController::class);
 Route::resource('uraian_pekerjaan', UraianPekerjaanController::class);
 Route::resource('uraian_pekerjaan_jabatan', UraianPekerjaanJabatanController::class);
+Route::resource('skp_target', SkpTargetController::class);
+Route::resource('skp_realisasi', SkpRealisasiController::class);
