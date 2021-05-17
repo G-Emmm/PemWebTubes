@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\RefUnitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,4 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 Route::resource('pegawai', PegawaiController::class);
+Route::resource('ref_unit', RefUnitController::class);
