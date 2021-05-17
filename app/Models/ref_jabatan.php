@@ -9,6 +9,11 @@ class ref_jabatan extends Model
 {
     use HasFactory;
 
+    protected $table = 'ref_jabatan';
+    const CREATED_AT = 'inserted_at';
+    const UPDATED_AT = 'edited_at';
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,6 +24,7 @@ class ref_jabatan extends Model
         'keterangan',
         'inserted_by',
         'edited_by',
+        'is_active',
     ];
 
     /**
@@ -27,7 +33,6 @@ class ref_jabatan extends Model
      * @var array
      */
     protected $casts = [
-        'is_active' => 'boolean',
         'inserted_at' => 'timestamp',
         'edited_at' => 'timestamp',
     ];
