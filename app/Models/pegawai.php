@@ -20,6 +20,9 @@ class pegawai extends Model
      * @var array
      */
     protected $fillable = [
+        'id_jabatan',
+        'id_user',
+        'id_unit',
         'kode_pegawai',
         'nama',
         'alamat',

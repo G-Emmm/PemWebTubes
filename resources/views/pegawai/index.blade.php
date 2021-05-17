@@ -22,6 +22,10 @@
         <tr>
             <th>No</th>
             <th>Nama</th>
+            <th>Kode Pegawai</th>
+            <th>Id Unit</th>
+            <th>Id Jabatan</th>
+            <th>Id User</th>
             <th>Alamat</th>
             <th>Inserted by</th>
             <th>Inserted at</th>
@@ -34,6 +38,10 @@
         <tr>
             <td>{{ $value->id }}</td>
             <td>{{ $value->nama }}</td>
+            <td>{{ $value->kode_pegawai }}</td>
+            <td>{{ $value->id_unit }}</td>
+            <td>{{ $value->id_jabatan }}</td>
+            <td>{{ $value->id_user }}</td>
             <td>{{ $value->alamat }}</td>
             <td>{{ $value->inserted_by }}</td>
             <td>{{ $value->inserted_at }}</td>

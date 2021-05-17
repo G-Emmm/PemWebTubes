@@ -42,6 +42,24 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>Id Unit:</strong>
+                    <input type="text" name="id_unit" value="{{ $pegawai->id_unit }}" class="form-control" placeholder="Id Unit">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Id Jabatan:</strong>
+                    <input type="text" name="id_jabatan" class="form-control" placeholder="Id jabatan">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Id User:</strong>
+                    <input type="text" name="id_user" class="form-control" placeholder="Id user">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Alamat:</strong>
                     <textarea class="form-control" style="height:150px" name="alamat" placeholder="Alamat pegawai">{{ $pegawai->alamat }}</textarea>
                 </div>
