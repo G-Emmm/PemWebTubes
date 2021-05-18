@@ -38,6 +38,7 @@ class PegawaiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id_unit' => 'required',
             'kode_pegawai' => 'required',
             'nama' => 'required',
             'alamat' => 'required',
@@ -86,6 +87,7 @@ class PegawaiController extends Controller
     public function update(Request $request, pegawai $pegawai)
     {
         $request->validate([
+            'id_unit' => 'required',
             'kode_pegawai' => 'required',
             'nama' => 'required',
             'alamat' => 'required',
