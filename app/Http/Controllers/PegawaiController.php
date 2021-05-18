@@ -44,7 +44,10 @@ class PegawaiController extends Controller
             'alamat' => 'required',
             'inserted_by' => 'required',
             'edited_by' => 'required',
-            'is_active' => 'required'
+            'is_active' => 'required',
+            'id_unit' => 'required',
+            'id_jabatan' => 'required',
+            'id_user' => 'required'
         ]);
 
         pegawai::create($request->all());
@@ -90,7 +93,10 @@ class PegawaiController extends Controller
             'alamat' => 'required',
             'inserted_by' => 'required',
             'edited_by' => 'required',
-            'is_active' => 'required'
+            'is_active' => 'required',
+            'id_unit' => 'required',
+            'id_jabatan' => 'required',
+            'id_user' => 'required'
         ]);
 
         $pegawai->update($request->all());
