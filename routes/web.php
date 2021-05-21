@@ -28,7 +28,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 Route::resource('pegawai', PegawaiController::class);
 Route::resource('ref_unit', RefUnitController::class);
 Route::resource('ref_jabatan', RefJabatanController::class);
