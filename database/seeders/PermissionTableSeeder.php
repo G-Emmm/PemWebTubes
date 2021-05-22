@@ -22,7 +22,11 @@ class PermissionTableSeeder extends Seeder
            'pegawai-list',
            'pegawai-create',
            'pegawai-edit',
-           'pegawai-delete'
+           'pegawai-delete',
+           'user-list',
+           'user-create',
+           'user-edit',
+           'user-delete'
         ];
      
         foreach ($permissions as $permission) {

@@ -22,10 +22,10 @@ class PegawaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $pegawai = pegawai::all();
-        return view('pegawai.index')->with('pegawai', $pegawai);
+        return view('pegawai.index', compact('pegawai'))->with('i');
     }
 
     /**

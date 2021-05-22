@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Anda adalah user biasa</div>
+                <div class="card-header">Sistem Kinerja Pegawai</div>
                 <div class="card-body">
-                    Selamat datang!
+                    Selamat datang <strong>{{ Auth::user()->name }}</strong> !
                 </div>
             </div>
         </div>
