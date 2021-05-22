@@ -9,6 +9,8 @@ use App\Http\Controllers\UraianPekerjaanController;
 use App\Http\Controllers\UraianPekerjaanJabatanController;
 use App\Http\Controllers\SkpTargetController;
 use App\Http\Controllers\SkpRealisasiController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,10 +30,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::resource('pegawai', PegawaiController::class);
-Route::resource('ref_unit', RefUnitController::class);
-Route::resource('ref_jabatan', RefJabatanController::class);
-Route::resource('uraian_pekerjaan', UraianPekerjaanController::class);
-Route::resource('uraian_pekerjaan_jabatan', UraianPekerjaanJabatanController::class);
-Route::resource('skp_target', SkpTargetController::class);
-Route::resource('skp_realisasi', SkpRealisasiController::class);
+
+Route::group(['middleware' => ['auth']], function(){
+
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('pegawai', PegawaiController::class);
+    Route::resource('ref_unit', RefUnitController::class);
+    Route::resource('ref_jabatan', RefJabatanController::class);
+    Route::resource('uraian_pekerjaan', UraianPekerjaanController::class);
+    Route::resource('uraian_pekerjaan_jabatan', UraianPekerjaanJabatanController::class);
+    Route::resource('skp_target', SkpTargetController::class);
+    Route::resource('skp_realisasi', SkpRealisasiController::class);
+
+});

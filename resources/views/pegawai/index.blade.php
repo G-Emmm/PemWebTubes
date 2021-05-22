@@ -1,4 +1,4 @@
-@extends('pegawai.layout')
+@extends('layouts.app')
  
 @section('content')
     <div class="row" style="margin-top: 5rem;">
@@ -7,7 +7,9 @@
                 <h2>Pegawai</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('pegawai.create') }}"> Tambah pegawai</a>
+                @can('pegawai-create')
+                <a class="btn btn-success" href="{{ route('pegawai.create') }}"> Tambah pegawai</a>                    
+                @endcan
             </div>
         </div>
     </div>
@@ -23,9 +25,9 @@
             <th>ID</th>
             <th>Nama</th>
             <th>Kode Pegawai</th>
-            <th>Id Unit</th>
-            <th>Id Jabatan</th>
-            <th>Id User</th>
+            <th>ID Unit</th>
+            <th>ID Jabatan</th>
+            <th>ID User</th>
             <th>Alamat</th>
             <th>Inserted by</th>
             <th>Inserted at</th>
@@ -54,11 +56,16 @@
             @endif
             <td>
                 <form action="{{ route('pegawai.destroy',$value->id) }}" method="POST">   
-                    <a class="btn btn-info" href="{{ route('pegawai.show',$value->id) }}">Tampilkan</a>    
-                    <a class="btn btn-primary" href="{{ route('pegawai.edit',$value->id) }}">Edit</a>   
+                    <a class="btn btn-info" href="{{ route('pegawai.show',$value->id) }}">Detail</a>   
+                    @can('pegawai-edit')
+                    <a class="btn btn-primary" href="{{ route('pegawai.edit',$value->id) }}">Edit</a>                        
+                    @endcan 
+   
                     @csrf
-                    @method('DELETE')      
+                    @method('DELETE')  
+                    @can('pegawai-delete')
                     <button type="submit" class="btn btn-danger">Hapus</button>
+                    @endcan    
                 </form>
             </td>
         </tr>

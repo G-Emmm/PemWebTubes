@@ -1,4 +1,4 @@
-@extends('pegawai.layout')
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
@@ -33,6 +33,24 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
+                <strong>Nama unit:</strong>
+                {{ $namaUnit }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Nama jabatan:</strong>
+                {{ $namaJabatan }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>ID user:</strong>
+                {{ $pegawai->id_user }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
                 <strong>Inserted by:</strong>
                 {{ $pegawai->inserted_by }}
             </div>
@@ -63,24 +81,6 @@
                 @else
                     Nonaktif
                 @endif
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>ID unit:</strong>
-                {{ $pegawai->id_unit }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>ID jabatan:</strong>
-                {{ $pegawai->id_jabatan }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>ID user:</strong>
-                {{ $pegawai->id_user }}
             </div>
         </div>
     </div>
