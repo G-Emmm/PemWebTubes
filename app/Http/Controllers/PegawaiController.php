@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\pegawai;
 use App\Models\User;
+use App\Models\ref_unit;
+use App\Models\ref_jabatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +37,10 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('pegawai.create');
+        $unit =ref_unit::pluck('nama', 'nama')->all();
+        $jabatan = ref_jabatan::pluck('nama', 'nama')->all();
+        $user = User::pluck('name', 'name')->all();
+        return view('pegawai.create', compact('unit', 'jabatan', 'user'));
     }
 
     /**
@@ -95,9 +100,27 @@ class PegawaiController extends Controller
      * @param  \App\Models\pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function edit(pegawai $pegawai)
+    public function edit($id)
     {
-        return view('pegawai.edit', compact('pegawai'));
+        $pegawai = pegawai::find($id);
+        
+        $unit = ref_unit::pluck('nama', 'nama')->all();
+        $unitQuery = DB::table('ref_unit')
+            ->join('pegawai', 'ref_unit.id', '=', 'pegawai.id_unit');
+        $unitPegawai = $unitQuery->pluck('ref_unit.nama', 'ref_unit.nama')->all();
+        
+        $jabatan = ref_jabatan::pluck('nama', 'nama')->all();
+        $jabatanQuery = DB::table('ref_jabatan')
+            ->join('pegawai', 'ref_jabatan.id', '=', 'pegawai.id_jabatan');
+        $jabatanPegawai = $jabatanQuery->pluck('ref_jabatan.nama', 'ref_jabatan.nama')->all();
+        
+        $user = User::pluck('name', 'name')->all();
+        $userQuery = DB::table('pegawai')
+            ->where('pegawai.id', $id)
+            ->join('users', 'pegawai.id_user', '=', 'users.id');
+        $userPegawai = $userQuery->pluck('users.name', 'users.name');
+
+        return view('pegawai.edit', compact('pegawai', 'unit', 'unitPegawai', 'jabatan', 'jabatanPegawai', 'user', 'userPegawai'));
     }
 
     /**

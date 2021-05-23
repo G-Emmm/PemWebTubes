@@ -48,20 +48,20 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>ID Unit:</strong>
-                    <input type="text" name="id_unit" value="{{ $pegawai->id_unit }}" class="form-control" placeholder="Id Unit">
+                    <strong>Unit:</strong>
+                    {!! Form::select('unit[]', $unit, $unitPegawai, array('class' => 'form-control','multiple')) !!}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>ID Jabatan:</strong>
-                    <input type="text" name="id_jabatan" value="{{ $pegawai->id_jabatan }}" class="form-control" placeholder="Id jabatan">
+                    <strong>Jabatan:</strong>
+                    {!! Form::select('jabatan[]', $jabatan, $jabatanPegawai, array('class' => 'form-control','multiple')) !!}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>ID User:</strong>
-                    <input type="text" name="id_user" value="{{ $pegawai->id_user }}" class="form-control" placeholder="Id user">
+                    <strong>User:</strong>
+                    {!! Form::select('user[]', $user, $userPegawai, array('class' => 'form-control','multiple')) !!}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
