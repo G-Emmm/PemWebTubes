@@ -14,6 +14,10 @@ class ref_unit extends Model
     const UPDATED_AT = 'edited_at';
     public $timestamps = false;
 
+    protected $attributes = [
+        'is_active' => 1
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -22,8 +26,6 @@ class ref_unit extends Model
     protected $fillable = [
         'nama',
         'level',
-        'inserted_by',
-        'edited_by',
         'is_active',
     ];
 

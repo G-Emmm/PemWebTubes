@@ -5,18 +5,27 @@ namespace App\Http\Controllers;
 use App\Models\ref_unit;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RefUnitController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ref_unit-list|ref_unit-create|ref_unit-edit|ref_unit-delete')->only('index', 'show');
+        $this->middleware('permission:ref_unit-create')->only('create', 'store');
+        $this->middleware('permission:ref_unit-edit')->only('edit', 'update');
+        $this->middleware('permission:ref_unit-delete')->only('destroy');
+    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $ref_unit = ref_unit::all();
-        return view('ref_unit.index')->with('ref_unit', $ref_unit);
+        return view('ref_unit.index', compact('ref_unit'))->with('i');
     }
 
     /**
@@ -37,17 +46,17 @@ class RefUnitController extends Controller
      */
     public function store(Request $request)
     {
+        $ref_unit = new ref_unit();
         $request->validate([
             'nama' => 'required',
-            'level' => 'required',
-            'inserted_by' => 'required',
-            'edited_by' => 'required',
-            'is_active' => 'required'
+            'level' => 'required'
         ]);
 
-        ref_unit::create($request->all());
+        $ref_unit->inserted_by = Auth::user()->name;
+        $ref_unit->edited_by = Auth::user()->name;
+        $ref_unit->save();
 
-        return redirect()->route('ref_unit.index')->with('success', 'Ref Unit ditambahkan.');
+        return redirect()->route('ref_unit.index')->with('success', 'Unit ditambahkan.');
     }
 
     /**

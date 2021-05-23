@@ -12,7 +12,6 @@ class pegawai extends Model
     protected $table = 'pegawai';
     const CREATED_AT = 'inserted_at';
     const UPDATED_AT = 'edited_at';
-    public $timestamps = false;
     
     protected $attributes = [
         'is_active' => 1
