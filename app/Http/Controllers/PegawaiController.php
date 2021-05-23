@@ -46,7 +46,7 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        $pegawai = new \App\Models\pegawai();
+        $pegawai = new pegawai();
               
 
         $request->validate([
@@ -107,11 +107,8 @@ class PegawaiController extends Controller
      * @param  \App\Models\pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, pegawai $pegawai)
+    public function update(Request $request, $id)
     {
-        $pegawai = new \App\Models\pegawai();
-        $pegawai->edited_by = Auth::user()->name;
-
         $request->validate([
             'id_unit' => 'required',
             'kode_pegawai' => 'required',
@@ -122,7 +119,8 @@ class PegawaiController extends Controller
             'id_jabatan' => 'required',
             'id_user' => 'required'
         ]);
-
+        $pegawai = pegawai::find($id);
+        $pegawai->update(['edited_by' => Auth::user()->name]);
         $pegawai->update($request->all());
 
         return redirect()->route('pegawai.index')->with('success', 'Pegawai diperbarui.');
