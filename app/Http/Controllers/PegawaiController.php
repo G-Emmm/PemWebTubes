@@ -37,9 +37,9 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        $unit =ref_unit::pluck('nama', 'nama')->all();
-        $jabatan = ref_jabatan::pluck('nama', 'nama')->all();
-        $user = User::pluck('name', 'name')->all();
+        $unit =ref_unit::pluck('nama', 'id')->all();
+        $jabatan = ref_jabatan::pluck('nama', 'id')->all();
+        $user = User::pluck('name', 'id')->all();
         return view('pegawai.create', compact('unit', 'jabatan', 'user'));
     }
 
@@ -104,21 +104,21 @@ class PegawaiController extends Controller
     {
         $pegawai = pegawai::find($id);
         
-        $unit = ref_unit::pluck('nama', 'nama')->all();
+        $unit = ref_unit::pluck('nama', 'id')->all();
         $unitQuery = DB::table('ref_unit')
             ->join('pegawai', 'ref_unit.id', '=', 'pegawai.id_unit');
-        $unitPegawai = $unitQuery->pluck('ref_unit.nama', 'ref_unit.nama')->all();
+        $unitPegawai = $unitQuery->pluck('ref_unit.id', 'ref_unit.id');
         
-        $jabatan = ref_jabatan::pluck('nama', 'nama')->all();
+        $jabatan = ref_jabatan::pluck('nama', 'id')->all();
         $jabatanQuery = DB::table('ref_jabatan')
             ->join('pegawai', 'ref_jabatan.id', '=', 'pegawai.id_jabatan');
-        $jabatanPegawai = $jabatanQuery->pluck('ref_jabatan.nama', 'ref_jabatan.nama')->all();
+        $jabatanPegawai = $jabatanQuery->pluck('ref_jabatan.id', 'ref_jabatan.id');
         
-        $user = User::pluck('name', 'name')->all();
+        $user = User::pluck('name', 'id')->all();
         $userQuery = DB::table('pegawai')
             ->where('pegawai.id', $id)
             ->join('users', 'pegawai.id_user', '=', 'users.id');
-        $userPegawai = $userQuery->pluck('users.name', 'users.name');
+        $userPegawai = $userQuery->pluck('users.id', 'users.id');
 
         return view('pegawai.edit', compact('pegawai', 'unit', 'unitPegawai', 'jabatan', 'jabatanPegawai', 'user', 'userPegawai'));
     }
@@ -143,6 +143,9 @@ class PegawaiController extends Controller
             'id_user' => 'required'
         ]);
         $pegawai = pegawai::find($id);
+        $pegawai->update(['id_unit' => $request->id_unit]);
+        $pegawai->update(['id_jabatan' => $request->id_jabatan]);
+        $pegawai->update(['id_user' => $request->id_user]);
         $pegawai->update(['edited_by' => Auth::user()->name]);
         $pegawai->update($request->all());
 

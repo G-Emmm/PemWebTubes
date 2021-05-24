@@ -49,19 +49,19 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Unit:</strong>
-                    {!! Form::select('unit[]', $unit, $unitPegawai, array('class' => 'form-control','multiple')) !!}
+                    {!! Form::select('id_unit', $unit, $unitPegawai, array('class' => 'form-control','multiple')) !!}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Jabatan:</strong>
-                    {!! Form::select('jabatan[]', $jabatan, $jabatanPegawai, array('class' => 'form-control','multiple')) !!}
+                    {!! Form::select('id_jabatan', $jabatan, $jabatanPegawai, array('class' => 'form-control','multiple')) !!}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>User:</strong>
-                    {!! Form::select('user[]', $user, $userPegawai, array('class' => 'form-control','multiple')) !!}
+                    {!! Form::select('id_user', $user, $userPegawai, array('class' => 'form-control','multiple')) !!}
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
