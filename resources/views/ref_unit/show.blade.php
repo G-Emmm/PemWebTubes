@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2> Tampilkan Ref Unit</h2>
+                <h2> Detail Unit</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('ref_unit.index') }}"> Kembali</a>
@@ -21,7 +21,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Level pegawai:</strong>
+                <strong>Level unit:</strong>
                 {{ $ref_unit->level }}
             </div>
         </div>
