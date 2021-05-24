@@ -1,4 +1,4 @@
-@extends('pegawai.layout')
+@extends('layouts.app')
    
 @section('content')
     <div class="row">
@@ -42,62 +42,32 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Id Unit:</strong>
-                    <input type="text" name="id_unit" value="{{ $pegawai->id_unit }}" class="form-control" placeholder="Id Unit">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Id Jabatan:</strong>
-                    <input type="text" name="id_jabatan" class="form-control" placeholder="Id jabatan">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Id User:</strong>
-                    <input type="text" name="id_user" class="form-control" placeholder="Id user">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
                     <strong>Alamat:</strong>
                     <textarea class="form-control" style="height:150px" name="alamat" placeholder="Alamat pegawai">{{ $pegawai->alamat }}</textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Status keaktifan:</strong>
+                    <strong>Unit:</strong>
+                    {!! Form::select('unit[]', $unit, $unitPegawai, array('class' => 'form-control','multiple')) !!}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Jabatan:</strong>
+                    {!! Form::select('jabatan[]', $jabatan, $jabatanPegawai, array('class' => 'form-control','multiple')) !!}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>User:</strong>
+                    {!! Form::select('user[]', $user, $userPegawai, array('class' => 'form-control','multiple')) !!}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Status keaktifan (0=nonaktif, 1=aktif):</strong>
                     <input type="text" name="is_active" value="{{ $pegawai->is_active }}" class="form-control" placeholder="Status keaktifan pegawai">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>ID unit:</strong>
-                    <input type="text" name="id_unit" value="{{ $pegawai->id_unit }}" class="form-control" placeholder="ID unit pegawai">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>ID jabatan:</strong>
-                    <input type="text" name="id_jabatan" value="{{ $pegawai->id_jabatan }}" class="form-control" placeholder="ID jabatan pegawai">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>ID user:</strong>
-                    <input type="text" name="id_user" value="{{ $pegawai->id_user }}" class="form-control" placeholder="ID user pegawai">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Inserted by:</strong>
-                    <input type="text" name="inserted_by" value="{{ $pegawai->inserted_by }}" class="form-control" placeholder="Inserted by">
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Edited by:</strong>
-                    <input type="text" name="edited_by" value="{{ $pegawai->edited_by }}" class="form-control" placeholder="Edited by">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">

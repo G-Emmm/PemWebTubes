@@ -4,19 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\pegawai;
 use App\Models\User;
+use App\Models\ref_unit;
+use App\Models\ref_jabatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PegawaiController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:pegawai-list|pegawai-create|pegawai-edit|pegawai-delete')->only('index', 'show');
+        $this->middleware('permission:pegawai-create')->only('create', 'store');
+        $this->middleware('permission:pegawai-edit')->only('edit', 'update');
+        $this->middleware('permission:pegawai-delete')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $pegawai = pegawai::all();
-        return view('pegawai.index')->with('pegawai', $pegawai);
+        return view('pegawai.index', compact('pegawai'))->with('i');
     }
 
     /**
@@ -26,7 +37,10 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('pegawai.create');
+        $unit =ref_unit::pluck('nama', 'nama')->all();
+        $jabatan = ref_jabatan::pluck('nama', 'nama')->all();
+        $user = User::pluck('name', 'name')->all();
+        return view('pegawai.create', compact('unit', 'jabatan', 'user'));
     }
 
     /**
@@ -37,20 +51,28 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
+        $pegawai = new pegawai();
+              
+
         $request->validate([
-            'id_unit' => 'required',
             'kode_pegawai' => 'required',
             'nama' => 'required',
             'alamat' => 'required',
-            'inserted_by' => 'required',
-            'edited_by' => 'required',
-            'is_active' => 'required',
             'id_unit' => 'required',
             'id_jabatan' => 'required',
-            'id_user' => 'required'
+            'id_user' => 'required',
         ]);
+        
 
-        pegawai::create($request->all());
+        $pegawai->kode_pegawai = $request->kode_pegawai;
+        $pegawai->nama = $request->nama;
+        $pegawai->alamat = $request->alamat;
+        $pegawai->id_unit = $request->id_unit;
+        $pegawai->id_jabatan = $request->id_jabatan;
+        $pegawai->id_user = $request->id_user;
+        $pegawai->inserted_by = Auth::user()->name;
+        $pegawai->edited_by = Auth::user()->name;
+        $pegawai->save();
 
         return redirect()->route('pegawai.index')->with('success', 'Pegawai ditambahkan.');
     }
@@ -63,7 +85,13 @@ class PegawaiController extends Controller
      */
     public function show(pegawai $pegawai)
     {
-        return view('pegawai.show', compact('pegawai'));
+        $namaUnit = DB::table('ref_unit')
+            ->join('pegawai', 'ref_unit.id', '=', 'pegawai.id_unit')
+            ->value('ref_unit.nama');
+        $namaJabatan = DB::table('ref_jabatan')
+            ->join('pegawai', 'ref_jabatan.id', '=', 'pegawai.id_jabatan')
+            ->value('ref_jabatan.nama');
+        return view('pegawai.show', compact('pegawai', 'namaUnit', 'namaJabatan'));
     }
 
     /**
@@ -72,9 +100,27 @@ class PegawaiController extends Controller
      * @param  \App\Models\pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function edit(pegawai $pegawai)
+    public function edit($id)
     {
-        return view('pegawai.edit', compact('pegawai'));
+        $pegawai = pegawai::find($id);
+        
+        $unit = ref_unit::pluck('nama', 'nama')->all();
+        $unitQuery = DB::table('ref_unit')
+            ->join('pegawai', 'ref_unit.id', '=', 'pegawai.id_unit');
+        $unitPegawai = $unitQuery->pluck('ref_unit.nama', 'ref_unit.nama')->all();
+        
+        $jabatan = ref_jabatan::pluck('nama', 'nama')->all();
+        $jabatanQuery = DB::table('ref_jabatan')
+            ->join('pegawai', 'ref_jabatan.id', '=', 'pegawai.id_jabatan');
+        $jabatanPegawai = $jabatanQuery->pluck('ref_jabatan.nama', 'ref_jabatan.nama')->all();
+        
+        $user = User::pluck('name', 'name')->all();
+        $userQuery = DB::table('pegawai')
+            ->where('pegawai.id', $id)
+            ->join('users', 'pegawai.id_user', '=', 'users.id');
+        $userPegawai = $userQuery->pluck('users.name', 'users.name');
+
+        return view('pegawai.edit', compact('pegawai', 'unit', 'unitPegawai', 'jabatan', 'jabatanPegawai', 'user', 'userPegawai'));
     }
 
     /**
@@ -84,24 +130,23 @@ class PegawaiController extends Controller
      * @param  \App\Models\pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, pegawai $pegawai)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'id_unit' => 'required',
             'kode_pegawai' => 'required',
             'nama' => 'required',
             'alamat' => 'required',
-            'inserted_by' => 'required',
-            'edited_by' => 'required',
             'is_active' => 'required',
             'id_unit' => 'required',
             'id_jabatan' => 'required',
             'id_user' => 'required'
         ]);
-
+        $pegawai = pegawai::find($id);
+        $pegawai->update(['edited_by' => Auth::user()->name]);
         $pegawai->update($request->all());
 
-        return redirect()->route('pegawai.index')->with('success', 'Pegawai diupdate.');
+        return redirect()->route('pegawai.index')->with('success', 'Pegawai diperbarui.');
     }
 
     /**

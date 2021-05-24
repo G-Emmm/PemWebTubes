@@ -1,4 +1,4 @@
-@extends('pegawai.layout')
+@extends('layouts.app')
   
 @section('content')
 <div class="row">
@@ -47,41 +47,22 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Status keaktifan:</strong>
-                <input type="text" name="is_active" class="form-control" placeholder="Masukkan status keaktifan pegawai">
+                <strong>Unit:</strong>
+                {!! Form::select('unit[]', $unit,[], array('class' => 'form-control','multiple')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>ID unit:</strong>
-                <input type="text" name="id_unit" class="form-control" placeholder="Masukkan ID unit pegawai">
+                <strong>Jabatan:</strong>
+                {!! Form::select('jabatan[]', $jabatan,[], array('class' => 'form-control','multiple')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>ID jabatan:</strong>
-                <input type="text" name="id_jabatan" class="form-control" placeholder="Masukkan ID jabatan pegawai">
+                <strong>User:</strong>
+                {!! Form::select('user[]', $user,[], array('class' => 'form-control','multiple')) !!}
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>ID user:</strong>
-                <input type="text" name="id_user" class="form-control" placeholder="Masukkan ID user pegawai">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Inserted by:</strong>
-                <input type="text" name="inserted_by" class="form-control" placeholder="Masukkan nama Anda">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Edited by:</strong>
-                <input type="text" name="edited_by" class="form-control" placeholder="Masukkan nama Anda">
-            </div>
-        </div>
-        {{-- kurang getter untuk edited by, inserted by --}}
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
         </div>
