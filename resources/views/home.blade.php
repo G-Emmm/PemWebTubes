@@ -1,16 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Sistem Kinerja Pegawai</div>
-                <div class="card-body">
-                    Selamat datang <strong>{{ Auth::user()->name }}</strong> !
-                </div>
-            </div>
-        </div>
+<div>
+    <div style="margin-left: 30%; margin-top: 150px;" class="fs-2 fw-bold text-start">
+        SELAMAT DATANG <br><strong style="color: #333399;"
+            class="text-uppercase fs-1">{{ Auth::user()->name }}!</strong>
     </div>
+    <p style="margin-left: 30%;" class="text-start">
+        Selamat datang <strong> {{ Auth::user()->name }} </strong> di website Sistem Kinerja Pegawai.
+    </p>
 </div>
+
 @endsection
