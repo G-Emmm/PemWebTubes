@@ -51,7 +51,8 @@ class RefUnitController extends Controller
             'nama' => 'required',
             'level' => 'required'
         ]);
-
+        $ref_unit->nama = $request->nama;
+        $ref_unit->level = $request->level;
         $ref_unit->inserted_by = Auth::user()->name;
         $ref_unit->edited_by = Auth::user()->name;
         $ref_unit->save();
@@ -88,7 +89,7 @@ class RefUnitController extends Controller
      * @param  \App\Models\ref_unit  $ref_unit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ref_unit $ref_unit)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'nama' => 'required',
@@ -96,9 +97,11 @@ class RefUnitController extends Controller
             'is_active' => 'required'
         ]);
 
+        $ref_unit = ref_unit::find($id);        
+        $ref_unit->update(['edited_by' => Auth::user()->name]);
         $ref_unit->update($request->all());
 
-        return redirect()->route('ref_unit.index')->with('success', 'Ref Unit diupdate.');
+        return redirect()->route('ref_unit.index')->with('success', 'Unit diperbarui.');
     }
 
     /**

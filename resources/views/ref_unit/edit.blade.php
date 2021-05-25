@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Edit Ref Unit</h2>
+                <h2>Edit Unit</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('ref_unit.index') }}"> Kembali</a>
@@ -31,19 +31,19 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Nama:</strong>
-                    <input type="text" name="nama" value="{{ $ref_unit->nama }}" class="form-control" placeholder="Nama pegawai">
+                    <input type="text" name="nama" value="{{ $ref_unit->nama }}" class="form-control" placeholder="Nama unit">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Level pegawai:</strong>
-                    <input type="text" name="level" value="{{ $ref_unit->level }}" class="form-control" placeholder="Level pegawai">
+                    <strong>Level unit:</strong>
+                    <input type="text" name="level" value="{{ $ref_unit->level }}" class="form-control" placeholder="Level unit">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Status keaktifan:</strong>
-                    <input type="text" name="is_active" value="{{ $ref_unit->is_active }}" class="form-control" placeholder="Status keaktifan pegawai">
+                    <input type="text" name="is_active" value="{{ $ref_unit->is_active }}" class="form-control" placeholder="Status keaktifan unit">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
