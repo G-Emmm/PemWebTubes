@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Sistem Kinerja Pegawai') }}</title>
+    <title> Sistem Kinerja Pegawai </title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -63,13 +63,16 @@
                     <li><a class="nav-link text-light" href="{{ route('users.index') }}">Manajemen User</a></li>
                     @endcan
 
-
                     @can('role-list')
                     <li><a class="nav-link text-light" href="{{ route('roles.index') }}">Manajemen Role</a></li>
                     @endcan
 
                     @can('pegawai-list')
                     <li><a class="nav-link text-light" href="{{ route('pegawai.index') }}">Manajemen Pegawai</a></li>
+                    @endcan
+                    
+                    @can('ref_unit-list')
+                    <li><a class="nav-link text-light" href="{{ route('ref_unit.index') }}">Manajemen Unit</a></li>
                     @endcan
                     <div class="ps-4">
                         <li class="nav-item dropdown">

@@ -12,7 +12,6 @@ class ref_unit extends Model
     protected $table = 'ref_unit';
     const CREATED_AT = 'inserted_at';
     const UPDATED_AT = 'edited_at';
-    public $timestamps = false;
 
     protected $attributes = [
         'is_active' => 1
@@ -27,6 +26,8 @@ class ref_unit extends Model
         'nama',
         'level',
         'is_active',
+        'inserted_by',
+        'edited_by'
     ];
 
     /**
@@ -35,7 +36,7 @@ class ref_unit extends Model
      * @var array
      */
     protected $casts = [
-        'inserted_at' => 'timestamp',
-        'edited_at' => 'timestamp',
+        'inserted_at' => 'datetime:Y-m-d\TH:i:s.u\Z',
+        'edited_at' => 'datetime:Y-m-d\TH:i:s.u\Z',
     ];
 }
