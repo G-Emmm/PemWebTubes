@@ -113,6 +113,6 @@ class RefUnitController extends Controller
     public function destroy(ref_unit $ref_unit)
     {
         $ref_unit->delete();
-        return redirect()->route('ref_unit.index')->with('success', 'Ref Unit dihapus.');
+        return redirect()->route('ref_unit.index')->with('success', 'Unit dihapus.');
     }
 }
