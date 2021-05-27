@@ -1,10 +1,10 @@
-@extends('ref_jabatan.layout')
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2> Tampilkan Ref Jabatan</h2>
+                <h2> Detail Jabatan</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('ref_jabatan.index') }}"> Kembali</a>
@@ -17,12 +17,6 @@
             <div class="form-group">
                 <strong>Nama:</strong>
                 {{ $ref_jabatan->nama }}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Kode Pegawai:</strong>
-                {{ $ref_jabatan->kode_ref_jabatan }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

@@ -42,7 +42,7 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Status keaktifan:</strong>
+                    <strong>Status keaktifan (0=nonaktif, 1=aktif):</strong>
                     <input type="text" name="is_active" value="{{ $ref_unit->is_active }}" class="form-control" placeholder="Status keaktifan unit">
                 </div>
             </div>

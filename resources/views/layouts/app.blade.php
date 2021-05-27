@@ -74,6 +74,10 @@
                     @can('ref_unit-list')
                     <li><a class="nav-link text-light" href="{{ route('ref_unit.index') }}">Manajemen Unit</a></li>
                     @endcan
+
+                    @can('ref_jabatan-list')
+                    <li><a class="nav-link text-light" href="{{ route('ref_jabatan.index') }}">Manajemen Jabatan</a></li>
+                    @endcan
                     <div class="ps-4">
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button"
