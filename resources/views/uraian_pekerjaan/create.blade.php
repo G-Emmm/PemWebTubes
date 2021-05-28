@@ -1,4 +1,4 @@
-@extends('uraian_pekerjaan.layout')
+@extends('layouts.app')
   
 @section('content')
 <div class="row">
