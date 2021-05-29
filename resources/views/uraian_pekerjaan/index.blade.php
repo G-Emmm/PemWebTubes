@@ -1,13 +1,15 @@
 @extends('layouts.app')
  
 @section('content')
-    <div class="row" style="margin-top: 5rem;">
-        <div class="col-lg-12 margin-tb">
+    <div class="row">
+        <div class="col-lg-12">
             <div class="pull-left">
-                <h2>Uraian Pekerjaan</h2>
+                <h2>Manajemen Pekerjaan</h2>
             </div>
             <div class="pull-right">
+                @can('uraian_pekerjaan-create')
                 <a class="btn btn-success" href="{{ route('uraian_pekerjaan.create') }}"> Tambah Uraian Pekerjaan</a>
+                @endcan
             </div>
         </div>
     </div>
@@ -20,21 +22,19 @@
    
     <table class="table table-bordered">
         <tr>
-            <th class="text-center">No</th>
-            <th class="text-center">Uraian</th>
-            <th class="text-center">Keterangan</th>
-            <th class="text-center">Poin</th>
-            <th class="text-center">Satuan</th>
-            <th class="text-center">Is Active</th>
-            <th class="text-center">Aksi</th>
+            <th>No</th>
+            <th>ID</th>
+            <th>Uraian</th>
+            <th>Keterangan</th>
+            <th>Status</th>
+            <th>Aksi</th>
         </tr>
         @foreach ($uraian_pekerjaan as $key => $value)
         <tr class="text-center">
-            <td>{{ $value->id - ($uraian_pekerjaan[0]->id) + 1 }}</td>
+            <td>{{ ++$i }}</td>
+            <td>{{ $value->id }}</td>
             <td>{{ $value->uraian }}</td>
             <td>{{ $value->keterangan }}</td>
-            <td>{{ $value->poin }}</td>
-            <td>{{ $value->satuan }}</td>
             @if ($value->is_active)
                 <td>Aktif</td>
             @else
@@ -42,11 +42,16 @@
             @endif
             <td>
                 <form action="{{ route('uraian_pekerjaan.destroy',$value->id) }}" method="POST">   
-                    <a class="btn btn-info" href="{{ route('uraian_pekerjaan.show',$value->id) }}">Tampilkan</a>    
-                    <a class="btn btn-primary" href="{{ route('uraian_pekerjaan.edit',$value->id) }}">Edit</a>   
+                    <a class="btn btn-info" href="{{ route('uraian_pekerjaan.show',$value->id) }}">Detail</a>    
+                    @can('uraian_pekerjaan-edit')
+                    <a class="btn btn-primary" href="{{ route('uraian_pekerjaan.edit',$value->id) }}">Edit</a>       
+                    @endcan
+                    
                     @csrf
                     @method('DELETE')  
+                    @can('uraian_pekerjaan-delete')
                     <button type="submit" class="btn btn-danger">Hapus</button>
+                    @endcan
                 </form>
             </td>
         </tr>
