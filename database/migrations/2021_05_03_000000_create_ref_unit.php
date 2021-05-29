@@ -22,9 +22,9 @@ class CreateRefUnit extends Migration
             $table->string('level', 20);
             $table->boolean('is_active');
             $table->timestamp('inserted_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->string('inserted_by', 8);
+            $table->string('inserted_by', 30);
             $table->timestamp('edited_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->string('edited_by', 8);
+            $table->string('edited_by', 30);
         });
     }
 

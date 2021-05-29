@@ -27,9 +27,9 @@ class CreateSkpRealisasi extends Migration
             $table->text('keterangan');
             $table->string('path_bukti', 255);
             $table->timestamp('inserted_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->string('inserted_by', 8);
+            $table->string('inserted_by', 30);
             $table->timestamp('edited_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->string('edited_by', 8);
+            $table->string('edited_by', 30);
         });
     }
 
