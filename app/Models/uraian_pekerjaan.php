@@ -12,7 +12,10 @@ class uraian_pekerjaan extends Model
     protected $table = 'uraian_pekerjaan';
     const CREATED_AT = 'inserted_at';
     const UPDATED_AT = 'edited_at';
-    public $timestamps = false;
+    
+    protected $attributes = [
+        'is_active' => 1
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -26,7 +29,7 @@ class uraian_pekerjaan extends Model
         'satuan',
         'inserted_by',
         'edited_by',
-        'is_active',
+        'is_active'
     ];
 
     /**
@@ -35,7 +38,6 @@ class uraian_pekerjaan extends Model
      * @var array
      */
     protected $casts = [
-        'is_active' => 'boolean',
         'inserted_at' => 'datetime:Y-m-d\TH:i:s.u\Z',
         'edited_at' => 'datetime:Y-m-d\TH:i:s.u\Z',
     ];

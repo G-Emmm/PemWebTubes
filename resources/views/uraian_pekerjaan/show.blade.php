@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="row">
-        <div class="col-lg-12 margin-tb">
+        <div class="col-lg-12">
             <div class="pull-left">
-                <h2> Tampilkan uraian_pekerjaan</h2>
+                <h2> Tampilkan Uraian Pekerjaan</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('uraian_pekerjaan.index') }}"> Kembali</a>
@@ -15,25 +15,25 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>uraian:</strong>
+                <strong>Uraian:</strong>
                 {{ $uraian_pekerjaan->uraian }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>keterangan:</strong>
+                <strong>Keterangan:</strong>
                 {{ $uraian_pekerjaan->keterangan }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>poin:</strong>
+                <strong>Poin:</strong>
                 {{ $uraian_pekerjaan->poin }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>satuan:</strong>
+                <strong>Satuan:</strong>
                 {{ $uraian_pekerjaan->satuan }}
             </div>
         </div>
