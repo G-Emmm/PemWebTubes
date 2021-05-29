@@ -1,8 +1,8 @@
-@extends('uraian_pekerjaan.layout')
+@extends('layouts.app')
   
 @section('content')
 <div class="row">
-    <div class="col-lg-12 margin-tb">
+    <div class="col-lg-12">
         <div class="pull-left">
             <h2>Tambah Uraian Pekerjaan</h2>
         </div>
@@ -50,19 +50,6 @@
                 <input type="text" name="satuan" class="form-control" placeholder="Masukkan satuan pekerjaan">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Inserted by:</strong>
-                <input type="text" name="inserted_by" class="form-control" placeholder="Masukkan nama Anda">
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Is Active:</strong>
-                <input type="text" name="is_active" class="form-control" placeholder="Masukkan status Anda">
-            </div>
-        </div>
-        {{-- kurang getter untuk edited by, inserted by --}}
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
         </div>

@@ -39,12 +39,6 @@
                 <input type="text" name="level" class="form-control" placeholder="Masukkan level unit">
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Status keaktifan:</strong>
-                <input type="text" name="is_active" class="form-control" placeholder="Masukkan status keaktifan unit">
-            </div>
-        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
         </div>

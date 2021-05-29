@@ -4,18 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\uraian_pekerjaan;
+use Illuminate\Support\Facades\Auth;
 
 class UraianPekerjaanController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:uraian_pekerjaan-list|uraian_pekerjaan-create|uraian_pekerjaan-edit|uraian_pekerjaan-delete')->only('index', 'show');
+        $this->middleware('permission:uraian_pekerjaan-create')->only('create', 'store');
+        $this->middleware('permission:uraian_pekerjaan-edit')->only('edit', 'update');
+        $this->middleware('permission:uraian_pekerjaan-delete')->only('destroy');
+    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $uraian_pekerjaan = uraian_pekerjaan::all();
-        return view('uraian_pekerjaan.index')->with('uraian_pekerjaan', $uraian_pekerjaan);
+        return view('uraian_pekerjaan.index', compact('uraian_pekerjaan'))->with('i');
     }
 
     /**
@@ -36,22 +45,24 @@ class UraianPekerjaanController extends Controller
      */
     public function store(Request $request)
     {
+        $uraian_pekerjaan = new uraian_pekerjaan();
         $request->validate([
             'uraian' => 'required',
             'keterangan' => 'required',
             'poin' => 'required',
             'satuan' => 'required',
-            'inserted_by' => 'required',
-            'is_active' => 'required',
         ]);
+        $uraian_pekerjaan->uraian = $request->uraian;
+        $uraian_pekerjaan->keterangan = $request->keterangan;
+        $uraian_pekerjaan->poin = $request->poin;
+        $uraian_pekerjaan->satuan = $request->satuan;
+        $uraian_pekerjaan->inserted_by = Auth::user()->name;
+        $uraian_pekerjaan->edited_by = Auth::user()->name;
+        $uraian_pekerjaan->save();
 
-        $input= $request->all();
 
-        $request->request->add(['edited_by' => $input['inserted_by']]);
 
-        uraian_pekerjaan::create($request->all());
-
-        return redirect()->route('uraian_pekerjaan.index')->with('success', 'uraian_pekerjaan ditambahkan.');
+        return redirect()->route('uraian_pekerjaan.index')->with('success', 'Pekerjaan ditambahkan.');
     }
 
     /**
@@ -83,20 +94,21 @@ class UraianPekerjaanController extends Controller
      * @param  \App\Models\uraian_pekerjaan  $uraian_pekerjaan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, uraian_pekerjaan $uraian_pekerjaan)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'uraian' => 'required',
             'keterangan' => 'required',
             'poin' => 'required',
             'satuan' => 'required',
-            'edited_by' => 'required',
             'is_active' => 'required',
         ]);
-
+        
+        $uraian_pekerjaan = uraian_pekerjaan::find($id);
+        $uraian_pekerjaan->update(['edited_by' => Auth::user()->name]);
         $uraian_pekerjaan->update($request->all());
 
-        return redirect()->route('uraian_pekerjaan.index')->with('success', 'uraian_pekerjaan diupdate.');
+        return redirect()->route('uraian_pekerjaan.index')->with('success', 'Pekerjaan diupdate.');
     }
 
     /**
@@ -108,6 +120,6 @@ class UraianPekerjaanController extends Controller
     public function destroy(uraian_pekerjaan $uraian_pekerjaan)
     {
         $uraian_pekerjaan->delete();
-        return redirect()->route('uraian_pekerjaan.index')->with('success', 'uraian_pekerjaan dihapus.');
+        return redirect()->route('uraian_pekerjaan.index')->with('success', 'Pekerjaan dihapus.');
     }
 }

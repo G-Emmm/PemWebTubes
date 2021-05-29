@@ -30,7 +30,15 @@ class PermissionTableSeeder extends Seeder
            'ref_unit-list',
            'ref_unit-create',
            'ref_unit-edit',
-           'ref_unit-delete'
+           'ref_unit-delete',
+           'ref_jabatan-list',
+           'ref_jabatan-create',
+           'ref_jabatan-edit',
+           'ref_jabatan-delete',
+           'uraian_pekerjaan-list',
+           'uraian_pekerjaan-create',
+           'uraian_pekerjaan-edit',
+           'uraian_pekerjaan-delete'
         ];
      
         foreach ($permissions as $permission) {
