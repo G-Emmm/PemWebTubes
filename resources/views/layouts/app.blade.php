@@ -29,9 +29,7 @@
         height: 100vh;
         position: fixed;
         background-color: #151521;
-
     }
-
     .konten {
         float: right;
     }
