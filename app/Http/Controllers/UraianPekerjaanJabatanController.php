@@ -6,18 +6,28 @@ use Illuminate\Http\Request;
 use App\Models\uraian_pekerjaan_jabatan;
 use App\Models\uraian_pekerjaan;
 use App\Models\ref_jabatan;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UraianPekerjaanJabatanController extends Controller
 {
+    // function __construct()
+    // {
+    //     $this->middleware('permission:upj-list|upj-create|upj-edit|upj-delete')->only('index', 'show');
+    //     $this->middleware('permission:upj-create')->only('create', 'store');
+    //     $this->middleware('permission:upj-edit')->only('edit', 'update');
+    //     $this->middleware('permission:upj-delete')->only('destroy');
+    // }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $uraian_pekerjaan_jabatan = uraian_pekerjaan_jabatan::all();
-        return view('uraian_pekerjaan_jabatan.index')->with('uraian_pekerjaan_jabatan', $uraian_pekerjaan_jabatan);
+        return view('uraian_pekerjaan_jabatan.index', compact('uraian_pekerjaan_jabatan'))->with('i');
     }
 
     /**
@@ -27,7 +37,9 @@ class UraianPekerjaanJabatanController extends Controller
      */
     public function create()
     {
-        return view('uraian_pekerjaan_jabatan.create');
+        $uraian_pekerjaan = uraian_pekerjaan::pluck('uraian', 'id')->all();
+        $jabatan = ref_jabatan::pluck('nama', 'id')->all();
+        return view('uraian_pekerjaan_jabatan.create', compact('uraian_pekerjaan', 'jabatan'));
     }
 
     /**
@@ -38,18 +50,20 @@ class UraianPekerjaanJabatanController extends Controller
      */
     public function store(Request $request)
     {
+        $uraian_pekerjaan_jabatan = new uraian_pekerjaan_jabatan();
+
+
         $request->validate([
             'id_jabatan' => 'required',
             'id_uraian_pekerjaan' => 'required',
-            'inserted_by' => 'required',
-            'is_active' => 'required',
         ]);
 
-        $input= $request->all();
+        $uraian_pekerjaan_jabatan->id_jabatan = $request->id_jabatan;
+        $uraian_pekerjaan_jabatan->id_uraian_pekerjaan = $request->id_uraian_pekerjaan;
+        $uraian_pekerjaan_jabatan->inserted_by = Auth::user()->name;
+        $uraian_pekerjaan_jabatan->edited_by = Auth::user()->name;
+        $uraian_pekerjaan_jabatan->save();
 
-        $request->request->add(['edited_by' => $input['inserted_by']]);
-
-        uraian_pekerjaan_jabatan::create($request->all());
 
         return redirect()->route('uraian_pekerjaan_jabatan.index')->with('success', 'uraian_pekerjaan_jabatan ditambahkan.');
     }
@@ -60,9 +74,22 @@ class UraianPekerjaanJabatanController extends Controller
      * @param  \App\Models\uraian_pekerjaan_jabatan  $uraian_pekerjaan_jabatan
      * @return \Illuminate\Http\Response
      */
-    public function show(uraian_pekerjaan_jabatan $uraian_pekerjaan_jabatan)
+    public function show($id)
     {
-        return view('uraian_pekerjaan_jabatan.show', compact('uraian_pekerjaan_jabatan'));
+        $uraian_pekerjaan_jabatan = DB::table('uraian_pekerjaan_jabatan');
+        $jabatan = DB::table('ref_jabatan');
+        $uraian_pekerjaan = DB::table('uraian_pekerjaan');
+        $namaJabatan = $jabatan
+            ->join($uraian_pekerjaan_jabatan, $jabatan->id, '=', $uraian_pekerjaan_jabatan->id_jabatan)
+            ->join($uraian_pekerjaan, $uraian_pekerjaan_jabatan->id_uraian_pekerjaan, '=', $uraian_pekerjaan->id)
+            ->where($uraian_pekerjaan_jabatan->id, '=', $id)
+            ->value($jabatan->nama);
+        $namaPekerjaan = $jabatan
+            ->join($uraian_pekerjaan_jabatan, $jabatan->id, '=', $uraian_pekerjaan_jabatan->id_jabatan)
+            ->join($uraian_pekerjaan, $uraian_pekerjaan_jabatan->id_uraian_pekerjaan, '=', $uraian_pekerjaan->id)
+            ->where($uraian_pekerjaan_jabatan->id, '=', $id)
+            ->get();
+        return view('uraian_pekerjaan_jabatan.show', compact('namaJabatan', 'namaPekerjaan'));
     }
 
     /**

@@ -1,10 +1,10 @@
-@extends('uraian_pekerjaan_jabatan.layout')
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
-        <div class="col-lg-12 margin-tb">
+        <div class="col-lg-12">
             <div class="pull-left">
-                <h2> Tampilkan uraian_pekerjaan_jabatan</h2>
+                <h2> Detail Pekerjaan di Jabatan</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('uraian_pekerjaan_jabatan.index') }}"> Kembali</a>
@@ -15,14 +15,14 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Id Jabatan:</strong>
-                {{ $uraian_pekerjaan_jabatan->id_jabatan }}
+                <strong>Nama jabatan:</strong>
+                {{ $namaJabatan }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Id Uraian Pekerjaan:</strong>
-                {{ $uraian_pekerjaan_jabatan->id_uraian_pekerjaan }}
+                <strong>Uraian Pekerjaan:</strong>
+                {{ $namaPekerjaan }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
