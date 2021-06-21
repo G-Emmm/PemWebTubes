@@ -28,7 +28,7 @@
         width: 230px;
         height: 100vh;
         position: fixed;
-        background-color: #151521;
+        background: linear-gradient(to right, #FF4B2B, #FF416C);
     }
     .konten {
         float: right;
