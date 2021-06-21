@@ -1,77 +1,112 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            
+            body{
+                background-image: url("https://www.hariansederhana.com/wp-content/uploads/2019/03/IMG_0906-01.jpeg");
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                font-family: 'Nunito', sans-serif;
+                color: white;
+            }
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+            .form{
+                height: 92vh;
+                float: right;
+                padding: 30px;
+                width: 20%;
+                background-color: rgba(0, 0, 0, 0.6);
+            }
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+            .email>input{
+                padding-left: 20px;
+            }
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+            form>*{
+                margin-bottom: 20px;
+            }
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+            .header{
+                margin-bottom: 20px;
+                text-align: center;
+                font-size: 18px;
+            }
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+            h2{
+                text-align: center;
+                margin-top: 100px;
+                margin-bottom: 50px;
+            }
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+            input[type="text"], input[type="email"], input[type="password"]{
+                width: 95%;
+                padding: 10px;
+                font-size: 16px;
+            }
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+            button{
+                width: 100%;
+                padding: 4px;
+                margin-top: 20px;
+                border-radius: 10px;
+                color: black;
+                background-color: white;
+                font-size: 20px;
+            }
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            button:hover{
+                cursor: pointer;
+                background-color: black;
+                color: white;
+                border: 2px solid white;
+                transition: 0.6s;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="form">
+            <h2>Please Sign Up</h2>
+            <div class="header" style="font-size: 26px;"><strong>Sign Up</strong></div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+                    <input id="name" type="text" name="name" required autocomplete="name" autofocus placeholder="Name">
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <input id="email" type="email" name="email" required autocomplete="email" placeholder="Email">
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <input id="password" type="password" name="password" required autocomplete="current-password" placeholder="Password">
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <input id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+                    <button type="submit">
+                        <strong>Register</strong>
+                    </button>
+                    <p><a href="{{ route('home') }}" style="color: white; text-decoration: none">
+                        Back to Home
+                    </a></p>
+                    <p><a href="{{ route('login') }}" style="color: white; text-decoration: none">
+                        Go to Log In
+                    </a></p>
+                </form>
             </div>
         </div>
-    </div>
-</div>
-@endsection
+    </body>
+</html>
