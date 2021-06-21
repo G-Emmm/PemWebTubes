@@ -276,11 +276,11 @@
       <div class="form-container sign-up-container">
         <form method="POST" action="{{ route('register') }}">
           @csrf
-          <h1 style="color: black">Create Account</h1>
+          <h1 style="color: black">Buat Akun</h1>
           <input type="text"  name="name" placeholder="Nama" />
           <input type="email" name="email" placeholder="Email" />
           <input type="password" name="password" placeholder="Kata Sandi" />
-          <input type="password" name="password_confirmation" placeholder="Confirm Kata Sandi" />
+          <input type="password" name="password_confirmation" placeholder="Konfirmasi Kata Sandi" />
           <button type="submit">Registrasi</button>
         </form>
       </div>
@@ -306,8 +306,8 @@
             <button class="ghost" id="signIn">Masuk</button>
           </div>
           <div class="overlay-panel overlay-right">
-            <h1>Hai, Pegawai!</h1>
-            <p>Masukkan data anda, untuk membuat akun baru</p>
+            <h1>Selamat Datang</h1>
+            <p>Masuk untuk mengakses</p>
             <button class="ghost" id="signUp">Registrasi</button>
           </div>
         </div>
