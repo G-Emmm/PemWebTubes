@@ -34,9 +34,11 @@
  */
 
     body {
-        text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-        box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
-        background-color: #151521;
+        background-image: url("https://www.hariansederhana.com/wp-content/uploads/2019/03/IMG_0906-01.jpeg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     .cover-container {
@@ -72,30 +74,29 @@
     </style>
 </head>
 
-<body class="d-flex h-100 text-center text-white">
+<body class="d-flex h-100 text-center text-white bg-dark">
 
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-
-
-        <main class="px-3 " style="margin-top:200px;">
-            <h1>Sistem Kinerja Pegawai</h1>
-            <p class="lead">Selamat Datang</p>
-            @auth
-            <p class="lead">
-                <a href="{{ url('/home') }}" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Home</a>
-            </p>
-            @else
-            <p class="lead">
-                <a href="{{ route('login') }}" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Login</a>
-                &nbsp Atau &nbsp
-                <a href="{{ route('register') }}" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Sign
-                    up</a>
-            </p>
-            @endauth
+        <main class="px-3 ">
+            <h1 class="mb-n5">Sistem <br />Kinerja Pegawai</h1>
+            <div class="wrap" style="background-color: rgba(0, 0, 0, 0.6); padding: 150px;">
+                <p class="lead">Selamat Datang Di <br />Sistem Kinerja Pegawai</p>
+                @auth
+                <p class="lead">
+                    <a href="{{ url('/home') }}" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Home</a>
+                </p>
+                @else
+                <p class="lead">
+                    <a href="{{ route('login') }}"
+                        class="btn btn-lg btn-secondary fw-bold border-white bg-white">Login</a>
+                    &nbsp Atau &nbsp
+                    <a href="{{ route('register') }}"
+                        class="btn btn-lg btn-secondary fw-bold border-white bg-white">Sign
+                        up</a>
+                </p>
+                @endauth
         </main>
-        <footer class="text-white-50" style="  margin-top:185px;">
-            <p>Kelompok 1</p>
-        </footer>
+    </div>
     </div>
 
 
