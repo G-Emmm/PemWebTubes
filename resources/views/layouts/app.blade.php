@@ -30,6 +30,7 @@
         position: fixed;
         background: linear-gradient(to right, #FF4B2B, #FF416C);
     }
+
     .konten {
         float: right;
     }
@@ -41,7 +42,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel d-flex flex-column align-item-start"
             id="sidebar">
             <div class="container flex-column">
-                <a class="navbar-brand sidebar-heading text-light" href="{{ url('/') }}">
+                <a class="navbar-brand sidebar-heading text-light">
                     Sistem Kinerja Pegawai
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -68,17 +69,19 @@
                     @can('pegawai-list')
                     <li><a class="nav-link text-light" href="{{ route('pegawai.index') }}">Manajemen Pegawai</a></li>
                     @endcan
-                    
+
                     @can('ref_unit-list')
                     <li><a class="nav-link text-light" href="{{ route('ref_unit.index') }}">Manajemen Unit</a></li>
                     @endcan
 
                     @can('ref_jabatan-list')
-                    <li><a class="nav-link text-light" href="{{ route('ref_jabatan.index') }}">Manajemen Jabatan</a></li>
+                    <li><a class="nav-link text-light" href="{{ route('ref_jabatan.index') }}">Manajemen Jabatan</a>
+                    </li>
                     @endcan
 
                     @can('uraian_pekerjaan-list')
-                    <li><a class="nav-link text-light" href="{{ route('uraian_pekerjaan.index') }}">Manajemen Pekerjaan</a></li>
+                    <li><a class="nav-link text-light" href="{{ route('uraian_pekerjaan.index') }}">Manajemen
+                            Pekerjaan</a></li>
                     @endcan
                     <div class="ps-4">
                         <li class="nav-item dropdown">
