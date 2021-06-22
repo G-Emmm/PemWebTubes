@@ -11,15 +11,22 @@ use App\Models\pegawai;
 
 class SkpTargetController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:pegawai-list|pegawai-create|pegawai-edit|pegawai-delete')->only('index', 'show');
+        $this->middleware('permission:pegawai-create')->only('create', 'store');
+        $this->middleware('permission:pegawai-edit')->only('edit', 'update');
+        $this->middleware('permission:pegawai-delete')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $skp_target = skp_target::all();
-        return view('skp_target.index')->with('skp_target', $skp_target);
+        return view('skp_target.index', compact('skp_target'))->with('i');
     }
 
     /**
@@ -29,7 +36,10 @@ class SkpTargetController extends Controller
      */
     public function create()
     {
-        return view('skp_target.create');
+        $unit =ref_unit::pluck('nama', 'id')->all();
+        $jabatan = ref_jabatan::pluck('nama', 'id')->all();
+        $user = User::pluck('name', 'id')->all();
+        return view('pegawai.create', compact('unit', 'jabatan', 'user'));
     }
 
     /**
