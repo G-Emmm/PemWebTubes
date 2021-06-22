@@ -38,7 +38,11 @@ class PermissionTableSeeder extends Seeder
            'uraian_pekerjaan-list',
            'uraian_pekerjaan-create',
            'uraian_pekerjaan-edit',
-           'uraian_pekerjaan-delete'
+           'uraian_pekerjaan-delete',
+           'upj-list',
+           'upj-create',
+           'upj-edit',
+           'upj-delete'
         ];
      
         foreach ($permissions as $permission) {
