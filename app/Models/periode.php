@@ -9,6 +9,10 @@ class periode extends Model
 {
     use HasFactory;
 
+    protected $table = 'periode';
+    const CREATED_AT = 'inserted_at';
+    const UPDATED_AT = 'edited_at';
+
     /**
      * The attributes that are mass assignable.
      *

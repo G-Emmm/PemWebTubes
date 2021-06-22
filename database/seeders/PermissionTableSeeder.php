@@ -42,7 +42,11 @@ class PermissionTableSeeder extends Seeder
            'upj-list',
            'upj-create',
            'upj-edit',
-           'upj-delete'
+           'upj-delete',
+           'periode-list',
+           'periode-create',
+           'periode-edit',
+           'periode-delete',
         ];
      
         foreach ($permissions as $permission) {
