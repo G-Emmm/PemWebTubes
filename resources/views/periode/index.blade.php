@@ -23,25 +23,17 @@
     <table class="table table-bordered">
         <tr>
             <th>No</th>
-            <th>ID</th>
             <th>Nama</th>
             <th>Tanggal awal</th>
             <th>Tanggal akhir</th>
-            <th>Status</th>
             <th width="280px">Aksi</th>
         </tr>
         @foreach ($periode as $key => $value)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $value->id }}</td>
                 <td>{{ $value->nama }}</td>
                 <td>{{ $value->tanggal_awal }}</td>
                 <td>{{ $value->tanggal_akhir }}</td>
-                @if ($value->is_active == 1)
-                    <td>Aktif</td>
-                @else
-                    <td>Nonaktif</td>
-                @endif
                 <td>
                     <form action="{{ route('periode.destroy', $value->id) }}" method="POST">
                         <a class="btn btn-info" href="{{ route('periode.show', $value->id) }}">Detail</a>
