@@ -1,8 +1,8 @@
 @extends('layouts.app')
  
 @section('content')
-    <div class="row" style="margin-top: 5rem;">
-        <div class="col-lg-12 margin-tb">
+    <div class="row">
+        <div class="col-lg-12">
             <div class="pull-left">
                 <h2>Uraian Pekerjaan Jabatan</h2>
             </div>
