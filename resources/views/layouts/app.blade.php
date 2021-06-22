@@ -80,6 +80,11 @@
                     @can('uraian_pekerjaan-list')
                     <li><a class="nav-link text-light" href="{{ route('uraian_pekerjaan.index') }}">Manajemen Pekerjaan</a></li>
                     @endcan
+
+                    @can('upj-list')
+                    <li><a class="nav-link text-light" href="{{ route('uraian_pekerjaan_jabatan.index') }}">Manajemen Pekerjaan per Jabatan</a></li>
+                    @endcan
+
                     <div class="ps-4">
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button"
