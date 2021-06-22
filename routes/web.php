@@ -11,6 +11,7 @@ use App\Http\Controllers\SkpTargetController;
 use App\Http\Controllers\SkpRealisasiController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PeriodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,5 +43,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('uraian_pekerjaan_jabatan', UraianPekerjaanJabatanController::class);
     Route::resource('skp_target', SkpTargetController::class);
     Route::resource('skp_realisasi', SkpRealisasiController::class);
+    Route::resource('periode', PeriodeController::class);
 
 });

@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class UraianPekerjaanJabatanController extends Controller
 {
-    // function __construct()
-    // {
-    //     $this->middleware('permission:upj-list|upj-create|upj-edit|upj-delete')->only('index', 'show');
-    //     $this->middleware('permission:upj-create')->only('create', 'store');
-    //     $this->middleware('permission:upj-edit')->only('edit', 'update');
-    //     $this->middleware('permission:upj-delete')->only('destroy');
-    // }
+    function __construct()
+    {
+        $this->middleware('permission:upj-list|upj-create|upj-edit|upj-delete')->only('index', 'show');
+        $this->middleware('permission:upj-create')->only('create', 'store');
+        $this->middleware('permission:upj-edit')->only('edit', 'update');
+        $this->middleware('permission:upj-delete')->only('destroy');
+    }
 
     /**
      * Display a listing of the resource.
@@ -58,14 +58,13 @@ class UraianPekerjaanJabatanController extends Controller
             'id_uraian_pekerjaan' => 'required',
         ]);
 
-        $uraian_pekerjaan_jabatan->id_jabatan = $request->id_jabatan;
-        $uraian_pekerjaan_jabatan->id_uraian_pekerjaan = $request->id_uraian_pekerjaan;
+        $uraian_pekerjaan_jabatan->id_uraian_pekerjaan_jabatan_composite = (string)$request->id_jabatan . (string)$request->id_uraian_pekerjaan;
         $uraian_pekerjaan_jabatan->inserted_by = Auth::user()->name;
         $uraian_pekerjaan_jabatan->edited_by = Auth::user()->name;
         $uraian_pekerjaan_jabatan->save();
 
 
-        return redirect()->route('uraian_pekerjaan_jabatan.index')->with('success', 'uraian_pekerjaan_jabatan ditambahkan.');
+        return redirect()->route('uraian_pekerjaan_jabatan.index')->with('success', 'data ditambahkan.');
     }
 
     /**
@@ -74,22 +73,18 @@ class UraianPekerjaanJabatanController extends Controller
      * @param  \App\Models\uraian_pekerjaan_jabatan  $uraian_pekerjaan_jabatan
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(uraian_pekerjaan_jabatan $uraian_pekerjaan_jabatan)
     {
-        $uraian_pekerjaan_jabatan = DB::table('uraian_pekerjaan_jabatan');
-        $jabatan = DB::table('ref_jabatan');
-        $uraian_pekerjaan = DB::table('uraian_pekerjaan');
-        $namaJabatan = $jabatan
-            ->join($uraian_pekerjaan_jabatan, $jabatan->id, '=', $uraian_pekerjaan_jabatan->id_jabatan)
-            ->join($uraian_pekerjaan, $uraian_pekerjaan_jabatan->id_uraian_pekerjaan, '=', $uraian_pekerjaan->id)
-            ->where($uraian_pekerjaan_jabatan->id, '=', $id)
-            ->value($jabatan->nama);
-        $namaPekerjaan = $jabatan
-            ->join($uraian_pekerjaan_jabatan, $jabatan->id, '=', $uraian_pekerjaan_jabatan->id_jabatan)
-            ->join($uraian_pekerjaan, $uraian_pekerjaan_jabatan->id_uraian_pekerjaan, '=', $uraian_pekerjaan->id)
-            ->where($uraian_pekerjaan_jabatan->id, '=', $id)
-            ->get();
-        return view('uraian_pekerjaan_jabatan.show', compact('namaJabatan', 'namaPekerjaan'));
+        $id_jabatan = substr($uraian_pekerjaan_jabatan->id_uraian_pekerjaan_jabatan_composite, 0, strlen($uraian_pekerjaan_jabatan->id_uraian_pekerjaan_jabatan_composite)/2);
+        $id_uraian_pekerjaan = substr($uraian_pekerjaan_jabatan->id_uraian_pekerjaan_jabatan_composite, strlen($uraian_pekerjaan_jabatan->id_uraian_pekerjaan_jabatan_composite)/2, strlen($uraian_pekerjaan_jabatan->id_uraian_pekerjaan_jabatan_composite)/2);
+        $namaJabatan = DB::table('ref_jabatan')
+            ->where('ref_jabatan.id', '=', (int)$id_jabatan)
+            ->value('ref_jabatan.nama');
+        $namaPekerjaan = DB::table('uraian_pekerjaan')
+            ->where('uraian_pekerjaan.id', '=', (int)$id_uraian_pekerjaan)
+            ->value('uraian_pekerjaan.uraian');
+
+        return view('uraian_pekerjaan_jabatan.show', compact('namaJabatan', 'namaPekerjaan', 'uraian_pekerjaan_jabatan'));
     }
 
     /**
@@ -98,9 +93,24 @@ class UraianPekerjaanJabatanController extends Controller
      * @param  \App\Models\uraian_pekerjaan_jabatan  $uraian_pekerjaan_jabatan
      * @return \Illuminate\Http\Response
      */
-    public function edit(uraian_pekerjaan_jabatan $uraian_pekerjaan_jabatan)
+    public function edit($id)
     {
-        return view('uraian_pekerjaan_jabatan.edit', compact('uraian_pekerjaan_jabatan'));
+        $uraian_pekerjaan_jabatan = uraian_pekerjaan_jabatan::find($id);
+        
+        $id_jabatan = substr($uraian_pekerjaan_jabatan->id_uraian_pekerjaan_jabatan_composite, 0, strlen($uraian_pekerjaan_jabatan->id_uraian_pekerjaan_jabatan_composite)/2);
+        $id_uraian_pekerjaan = substr($uraian_pekerjaan_jabatan->id_uraian_pekerjaan_jabatan_composite, strlen($uraian_pekerjaan_jabatan->id_uraian_pekerjaan_jabatan_composite)/2, strlen($uraian_pekerjaan_jabatan->id_uraian_pekerjaan_jabatan_composite)/2);
+        
+        $uraian_pekerjaan = uraian_pekerjaan::pluck('uraian', 'id')->all();
+        $uraian_pekerjaanQuery = DB::table('uraian_pekerjaan')
+            ->where('uraian_pekerjaan.id', '=', (int)$id_uraian_pekerjaan);
+        $uraianPekerjaanPerJabatan = $uraian_pekerjaanQuery->pluck('uraian_pekerjaan.id', 'uraian_pekerjaan.id');
+        
+        $jabatan = ref_jabatan::pluck('nama', 'id')->all();
+        $jabatanQuery = DB::table('ref_jabatan')
+            ->where('ref_jabatan.id', '=', (int)$id_jabatan);
+        $jabatanUraianPekerjaan = $jabatanQuery->pluck('ref_jabatan.id', 'ref_jabatan.id');
+        
+        return view('uraian_pekerjaan_jabatan.edit', compact('uraian_pekerjaan_jabatan', 'uraian_pekerjaan', 'uraianPekerjaanPerJabatan', 'jabatan', 'jabatanUraianPekerjaan'));
     }
 
     /**
@@ -113,15 +123,14 @@ class UraianPekerjaanJabatanController extends Controller
     public function update(Request $request, uraian_pekerjaan_jabatan $uraian_pekerjaan_jabatan)
     {
         $request->validate([
-            'id_jabatan' => 'required',
-            'id_uraian_pekerjaan' => 'required',
+            'id_uraian_pekerjaan_jabatan_composite' => 'required',
             'edited_by' => 'required',
             'is_active' => 'required',
         ]);
 
         $uraian_pekerjaan_jabatan->update($request->all());
 
-        return redirect()->route('uraian_pekerjaan_jabatan.index')->with('success', 'uraian_pekerjaan_jabatan diupdate.');
+        return redirect()->route('uraian_pekerjaan_jabatan.index')->with('success', 'data diupdate.');
     }
 
     /**
@@ -133,6 +142,6 @@ class UraianPekerjaanJabatanController extends Controller
     public function destroy(uraian_pekerjaan_jabatan $uraian_pekerjaan_jabatan)
     {
         $uraian_pekerjaan_jabatan->delete();
-        return redirect()->route('uraian_pekerjaan_jabatan.index')->with('success', 'uraian_pekerjaan_jabatan dihapus.');
+        return redirect()->route('uraian_pekerjaan_jabatan.index')->with('success', 'data dihapus.');
     }
 }

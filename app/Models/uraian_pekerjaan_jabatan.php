@@ -4,14 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\BaseModel;
 
-class uraian_pekerjaan_jabatan extends BaseModel
+class uraian_pekerjaan_jabatan extends Model
 {
     use HasFactory;
 
     protected $table = 'uraian_pekerjaan_jabatan';
-    protected $primaryKey = ['id_jabatan', 'id_uraian_pekerjaan'];
     const CREATED_AT = 'inserted_at';
     const UPDATED_AT = 'edited_at';
     
@@ -26,7 +24,7 @@ class uraian_pekerjaan_jabatan extends BaseModel
      */
     protected $fillable = [
         'id_jabatan',
-        'id_uraian_pekerjaan',
+        'id_uraian_pekerjaan_jabatan_comp',
         'inserted_by',
         'edited_by',
         'is_active',

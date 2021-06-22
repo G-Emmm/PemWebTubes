@@ -1,8 +1,8 @@
 @extends('layouts.app')
  
 @section('content')
-    <div class="row" style="margin-top: 5rem;">
-        <div class="col-lg-12 margin-tb">
+    <div class="row">
+        <div class="col-lg-12">
             <div class="pull-left">
                 <h2>Uraian Pekerjaan Jabatan</h2>
             </div>
@@ -29,8 +29,8 @@
         @foreach ($uraian_pekerjaan_jabatan as $key => $value)
         <tr class="text-center">
             <td>{{ $value->id - ($uraian_pekerjaan_jabatan[0]->id) + 1 }}</td>
-            <td>{{ $value->id_jabatan }}</td>
-            <td>{{ $value->id_uraian_pekerjaan }}</td>
+            <td>{{ Str::substr($value->id_uraian_pekerjaan_jabatan_composite, 0, Str::length($value->id_uraian_pekerjaan_jabatan_composite)/2) }}</td>
+            <td>{{ Str::substr($value->id_uraian_pekerjaan_jabatan_composite, Str::length($value->id_uraian_pekerjaan_jabatan_composite)/2, Str::length($value->id_uraian_pekerjaan_jabatan_composite)/2) }}</td>
             @if ($value->is_active == 1)
                 <td>Aktif</td>
             @else

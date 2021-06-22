@@ -2,12 +2,12 @@
   
 @section('content')
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Tambah Uraian Pekerjaan di Jabatan</h2>
+            <h2>Tambah Periode</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('uraian_pekerjaan_jabatan.index') }}"> Kembali</a>
+            <a class="btn btn-primary" href="{{ route('periode.index') }}"> Kembali</a>
         </div>
     </div>
 </div>
@@ -23,19 +23,26 @@
     </div>
 @endif
    
-<form action="{{ route('uraian_pekerjaan_jabatan.store') }}" method="POST">
+<form action="{{ route('periode.store') }}" method="POST">
     @csrf
+  
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Jabatan:</strong>
-                {!! Form::select('id_jabatan', $jabatan, [], array('class' => 'form-control','multiple')) !!}
+                <strong>Nama:</strong>
+                <input type="text" name="nama" class="form-control" placeholder="Masukkan nama periode">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Uraian Pekerjaan:</strong>
-                {!! Form::select('id_uraian_pekerjaan', $uraian_pekerjaan, [], array('class' => 'form-control','multiple')) !!}
+                <strong>Tanggal awal:</strong>
+                <input type="date" name="tanggal_awal" class="form-control" placeholder="Masukkan tanggal awal periode">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Tanggal akhir:</strong>
+                <input type="date" name="tanggal_akhir" class="form-control" placeholder="Masukkan tanggal akhir periode">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

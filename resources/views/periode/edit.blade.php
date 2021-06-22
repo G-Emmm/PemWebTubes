@@ -2,12 +2,12 @@
    
 @section('content')
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Edit Uraian Pekerjaan Jabatan</h2>
+                <h2>Edit Periode</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('uraian_pekerjaan_jabatan.index') }}"> Kembali</a>
+                <a class="btn btn-primary" href="{{ route('periode.index') }}"> Kembali</a>
             </div>
         </div>
     </div>
@@ -23,31 +23,31 @@
         </div>
     @endif
   
-    <form action="{{ route('uraian_pekerjaan_jabatan.update',$uraian_pekerjaan_jabatan->id) }}" method="POST">
+    <form action="{{ route('periode.update',$periode->id) }}" method="POST">
         @csrf
         @method('PUT')
    
-        <div class="row">
+         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Jabatan:</strong>
-                    {!! Form::select('id_jabatan', $jabatan, $jabatanUraianPekerjaan, array('class' => 'form-control','multiple')) !!}
+                    <strong>Nama:</strong>
+                    <input type="text" name="nama" value="{{ $periode->nama }}" class="form-control" placeholder="Nama periode">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Uraian Pekerjaan:</strong>
-                    {!! Form::select('id_uraian_pekerjaan', $uraian_pekerjaan, $uraianPekerjaanPerJabatan, array('class' => 'form-control','multiple')) !!}
+                    <strong>Tanggal awal:</strong>
+                    <input type="text" name="level" value="{{ $periode->tanggal_awal }}" class="form-control" placeholder="Tanggal awal periode">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Status keaktifan (0=nonaktif, 1=aktif):</strong>
-                    <input type="text" name="is_active" class="form-control" placeholder="Masukkan status keaktifan" value={{ $uraian_pekerjaan_jabatan->is_active }}>
+                    <strong>Tanggal akhir:</strong>
+                    <input type="text" name="level" value="{{ $periode->tanggal_akhir }}" class="form-control" placeholder="Tanggal akhir periode">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
    

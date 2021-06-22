@@ -9,6 +9,10 @@ class periode extends Model
 {
     use HasFactory;
 
+    protected $table = 'periode';
+    const CREATED_AT = 'inserted_at';
+    const UPDATED_AT = 'edited_at';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -28,8 +32,8 @@ class periode extends Model
      * @var array
      */
     protected $casts = [
-        'inserted_at' => 'timestamp',
-        'edited_at' => 'timestamp',
+        'inserted_at' => 'datetime:Y-m-d\TH:i:s.u\Z',
+        'edited_at' => 'datetime:Y-m-d\TH:i:s.u\Z',
         'tanggal_awal' => 'date',
         'tanggal_akhir' => 'date',
     ];
